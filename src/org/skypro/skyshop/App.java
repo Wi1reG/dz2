@@ -1,31 +1,82 @@
 package org.skypro.skyshop;
 
-import org.skypro.skyshop.basket.ProductBasket;
-import org.skypro.skyshop.product.DiscountedProduct;
-import org.skypro.skyshop.product.FixPriceProduct;
+import org.skypro.skyshop.SearchEngine;
+import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.product.Product;
-import org.skypro.skyshop.product.SimpleProduct;
 
 public class App {
     public static void main(String[] args) {
+        // Создание и добавление товаров
+        Product apple = new Product("Apple") {
+            @Override
+            public String toString() {
+                return "Apple, 100";
+            }
 
-        ProductBasket basket = new ProductBasket();
+            @Override
+            public int getPrice() {
+                return 100;
+            }
 
-        DiscountedProduct discountedApple = new DiscountedProduct("Яблоки", 100, 10);
-        FixPriceProduct fixPriceApple = new FixPriceProduct("Фиктивные яблоки");
+            @Override
+            public boolean isSpecial() {
+                return false;
+            }
+        };
 
-        DiscountedProduct discountedBanana = new DiscountedProduct("Бананы", 150, 5);
-        SimpleProduct milk = new SimpleProduct("Молоко", 80);
-        FixPriceProduct fixPriceBread = new FixPriceProduct("Хлеб");
+        Product banana = new Product("Banana") {
+            @Override
+            public String toString() {
+                return "Banana, 150";
+            }
 
-        basket.addProduct(discountedApple);
-        basket.addProduct(fixPriceApple);
-        basket.addProduct(discountedBanana);
-        basket.addProduct(milk);
-        basket.addProduct(fixPriceBread);
+            @Override
+            public int getPrice() {
+                return 150;
+            }
 
+            @Override
+            public boolean isSpecial() {
+                return false;
+            }
+        };
 
-        basket.printBasket();
+        Product milk = new Product("Milk") {
+            @Override
+            public String toString() {
+                return "Milk, 80";
+            }
+
+            @Override
+            public int getPrice() {
+                return 80;
+            }
+
+            @Override
+            public boolean isSpecial() {
+                return false;
+            }
+        };
+
+        // Создание и добавление статей
+        Article article1 = new Article("Article Title 1", "Article text 1");
+        Article article2 = new Article("Article Title 2", "Article text 2");
+
+        // Создание и инициализация SearchEngine
+        SearchEngine searchEngine = new SearchEngine(5);
+
+        // Добавление товаров в SearchEngine
+        searchEngine.add(apple);
+        searchEngine.add(banana);
+        searchEngine.add(milk)
+
+        // Добавление статей в SearchEngine
+        searchEngine.add(article1);
+        searchEngine.add(article2);
+
+        // Тестирование поиска
+        searchEngine.search("ban");
+        searchEngine.search("art");
+        searchEngine.search("app");
     }
-
 }
