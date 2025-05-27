@@ -1,6 +1,8 @@
 package org.skypro.skyshop.product;
 
-public abstract class Product {
+import org.skypro.skyshop.Searchable;
+
+public abstract class Product implements Searchable {
     private String name;
 
     public Product(String name) {
@@ -11,12 +13,20 @@ public abstract class Product {
         return name;
     }
 
-    public abstract int getPrice();
+    @Override
+    public String getSearchTerm() {
+        return getName();
+    }
 
+    @Override
+    public String getContentType() {
+        return "PRODUCT";
+    }
+
+    @Override
     public abstract String toString();
 
-    // Новый метод для определения специального товара
-    public boolean isSpecial() {
-        return false; // По умолчанию все товары не специальные
-    }
+    public abstract int getPrice();
+
+    public abstract boolean isSpecial();
 }
